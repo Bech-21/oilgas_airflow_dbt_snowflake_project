@@ -1,0 +1,56 @@
+[2025-10-11T18:21:56.132+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline permission to 509
+[2025-10-11T18:21:56.133+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline'
+[2025-10-11T18:21:56.176+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline permission to 509
+[2025-10-11T18:21:56.177+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline'
+[2025-10-11T18:21:56.228+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_pipeline.bronze_rig_count_pipeline manual__2025-10-11T18:21:54.870280+00:00 [queued]>
+[2025-10-11T18:21:56.240+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_pipeline.bronze_rig_count_pipeline manual__2025-10-11T18:21:54.870280+00:00 [queued]>
+[2025-10-11T18:21:56.241+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2025-10-11T18:21:56.373+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): bronze_rig_count_pipeline> on 2025-10-11 18:21:54.870280+00:00
+[2025-10-11T18:21:56.384+0000] {standard_task_runner.py:57} INFO - Started process 516 to run task
+[2025-10-11T18:21:56.388+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ETL_pipeline', 'bronze_rig_count_pipeline', 'manual__2025-10-11T18:21:54.870280+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpwfxubfql']
+[2025-10-11T18:21:56.391+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask bronze_rig_count_pipeline
+[2025-10-11T18:21:56.453+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline permission to 509
+[2025-10-11T18:21:56.453+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=ETL_pipeline/run_id=manual__2025-10-11T18:21:54.870280+00:00/task_id=bronze_rig_count_pipeline'
+[2025-10-11T18:21:56.455+0000] {task_command.py:415} INFO - Running <TaskInstance: ETL_pipeline.bronze_rig_count_pipeline manual__2025-10-11T18:21:54.870280+00:00 [running]> on host f22a895b55de
+[2025-10-11T18:21:56.533+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bech' AIRFLOW_CTX_DAG_ID='ETL_pipeline' AIRFLOW_CTX_TASK_ID='bronze_rig_count_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2025-10-11T18:21:54.870280+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-11T18:21:54.870280+00:00'
+[2025-10-11T18:21:56.535+0000] {bronze_layer.py:105} INFO - Starting bronze layer data ingestion...
+[2025-10-11T18:21:56.535+0000] {logging_mixin.py:151} INFO - Getting rig count data...
+[2025-10-11T18:21:58.367+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/openpyxl/worksheet/_reader.py:329 UserWarning: Unknown extension is not supported and will be removed
+[2025-10-11T18:21:58.400+0000] {logging_mixin.py:151} INFO - Successfully loaded Excel file. Shape: (16503, 12)
+[2025-10-11T18:21:58.417+0000] {logging_mixin.py:151} INFO -           Country                     County  ... US_PublishDate Rig Count Value
+0          CANADA            CENTRAL ALBERTA  ...     2024-01-05               2
+1          CANADA            FOOTHILLS FRONT  ...     2024-01-05              36
+2          CANADA       NORTHWESTERN ALBERTA  ...     2024-01-05               8
+3          CANADA            CENTRAL ALBERTA  ...     2024-01-05               2
+4          CANADA       EAST CENTRAL ALBERTA  ...     2024-01-05               1
+5          CANADA            FOOTHILLS FRONT  ...     2024-01-05              18
+6          CANADA       NORTHEASTERN ALBERTA  ...     2024-01-05              12
+7          CANADA       NORTHWESTERN ALBERTA  ...     2024-01-05               8
+8          CANADA       SOUTHEASTERN ALBERTA  ...     2024-01-05               3
+9          CANADA       NORTHEASTERN ALBERTA  ...     2024-01-05               1
+10         CANADA  NORTHERN BRITISH COLUMBIA  ...     2024-01-05              20
+11         CANADA                   MANITOBA  ...     2024-01-05               1
+12         CANADA       EASTERN SASKATCHEWAN  ...     2024-01-05               1
+13         CANADA       CENTRAL SASKATCHEWAN  ...     2024-01-05               1
+14         CANADA       EASTERN SASKATCHEWAN  ...     2024-01-05               7
+15         CANADA  SOUTHWESTERN SASKATCHEWAN  ...     2024-01-05               3
+16         CANADA                NL OFFSHORE  ...     2024-01-05               1
+17  UNITED STATES                     CARTER  ...     2024-01-05               2
+18  UNITED STATES                  PITTSBURG  ...     2024-01-05               1
+19  UNITED STATES                   MONTAGUE  ...     2024-01-05               1
+20  UNITED STATES                      GRADY  ...     2024-01-05               3
+21  UNITED STATES                     BLAINE  ...     2024-01-05               3
+22  UNITED STATES                      CADDO  ...     2024-01-05               1
+23  UNITED STATES                   CANADIAN  ...     2024-01-05               8
+24  UNITED STATES                      DEWEY  ...     2024-01-05               2
+25  UNITED STATES                      GRADY  ...     2024-01-05               5
+26  UNITED STATES                   ARAPAHOE  ...     2024-01-05               2
+27  UNITED STATES                       WELD  ...     2024-01-05              11
+28  UNITED STATES                    LARAMIE  ...     2024-01-05               1
+29  UNITED STATES                    DE WITT  ...     2024-01-05               1
+
+[30 rows x 12 columns]
+[2025-10-11T18:21:58.419+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-10-11T18:21:58.427+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=ETL_pipeline, task_id=bronze_rig_count_pipeline, execution_date=20251011T182154, start_date=20251011T182156, end_date=20251011T182158
+[2025-10-11T18:21:58.491+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-10-11T18:21:58.505+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

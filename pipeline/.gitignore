@@ -1,0 +1,20 @@
+
+
+# GitHub Actions cache
+/.github/.cache
+
+# Docker cache
+logs/
+docker/plugins/
+
+
+
+
+.env
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+.DS_Store
+docker-compose.override.yml
+logs/

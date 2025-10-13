@@ -1,0 +1,77 @@
+[2025-10-13T00:00:01.407+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline permission to 509
+[2025-10-13T00:00:01.408+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline'
+[2025-10-13T00:00:01.448+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline permission to 509
+[2025-10-13T00:00:01.448+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline'
+[2025-10-13T00:00:01.487+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_pipeline.bronze_rig_count_pipeline scheduled__2025-10-12T00:00:00+00:00 [queued]>
+[2025-10-13T00:00:01.493+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_pipeline.bronze_rig_count_pipeline scheduled__2025-10-12T00:00:00+00:00 [queued]>
+[2025-10-13T00:00:01.494+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2025-10-13T00:00:01.507+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): bronze_rig_count_pipeline> on 2025-10-12 00:00:00+00:00
+[2025-10-13T00:00:01.515+0000] {standard_task_runner.py:57} INFO - Started process 12369 to run task
+[2025-10-13T00:00:01.519+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ETL_pipeline', 'bronze_rig_count_pipeline', 'scheduled__2025-10-12T00:00:00+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmp6m90r50_']
+[2025-10-13T00:00:01.523+0000] {standard_task_runner.py:85} INFO - Job 38: Subtask bronze_rig_count_pipeline
+[2025-10-13T00:00:01.570+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline permission to 509
+[2025-10-13T00:00:01.570+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=ETL_pipeline/run_id=scheduled__2025-10-12T00:00:00+00:00/task_id=bronze_rig_count_pipeline'
+[2025-10-13T00:00:01.572+0000] {task_command.py:415} INFO - Running <TaskInstance: ETL_pipeline.bronze_rig_count_pipeline scheduled__2025-10-12T00:00:00+00:00 [running]> on host f22a895b55de
+[2025-10-13T00:00:01.648+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='bech' AIRFLOW_CTX_DAG_ID='ETL_pipeline' AIRFLOW_CTX_TASK_ID='bronze_rig_count_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2025-10-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-10-12T00:00:00+00:00'
+[2025-10-13T00:00:01.650+0000] {bronze_layer.py:275} INFO - Starting bronze layer data ingestion for Baker Hughes Rig Count...
+[2025-10-13T00:00:01.650+0000] {bronze_layer.py:52} INFO - Getting rig count data from Baker Hughes...
+[2025-10-13T00:00:03.666+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/openpyxl/worksheet/_reader.py:329 UserWarning: Unknown extension is not supported and will be removed
+[2025-10-13T00:00:03.703+0000] {bronze_layer.py:72} INFO - Successfully loaded Excel file. Shape: (16503, 12)
+[2025-10-13T00:00:03.704+0000] {bronze_layer.py:73} INFO - Columns: ['Country', 'County', 'Basin', 'GOM', 'DrillFor', 'Location', 'State/Province', 'Trajectory', 'Year', 'Month', 'US_PublishDate', 'Rig Count Value']
+[2025-10-13T00:00:03.716+0000] {bronze_layer.py:74} INFO - First few rows:
+  Country                County  Basin  ... Month US_PublishDate Rig Count Value
+0  CANADA       CENTRAL ALBERTA  Other  ...     1     2024-01-05               2
+1  CANADA       FOOTHILLS FRONT  Other  ...     1     2024-01-05              36
+2  CANADA  NORTHWESTERN ALBERTA  Other  ...     1     2024-01-05               8
+3  CANADA       CENTRAL ALBERTA  Other  ...     1     2024-01-05               2
+4  CANADA  EAST CENTRAL ALBERTA  Other  ...     1     2024-01-05               1
+
+[5 rows x 12 columns]
+[2025-10-13T00:00:03.717+0000] {bronze_layer.py:84} INFO - Creating Snowflake connection...
+[2025-10-13T00:00:03.718+0000] {connection.py:314} INFO - Snowflake Connector for Python Version: 3.1.1, Python Version: 3.8.18, Platform: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.2.5
+[2025-10-13T00:00:03.719+0000] {connection.py:1050} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-10-13T00:00:03.720+0000] {connection.py:1068} INFO - Setting use_openssl_only mode to False
+[2025-10-13T00:00:04.345+0000] {bronze_layer.py:97} INFO - Snowflake connection established successfully
+[2025-10-13T00:00:04.346+0000] {bronze_layer.py:242} INFO - Storing data in Snowflake using COPY command...
+[2025-10-13T00:00:04.448+0000] {bronze_layer.py:173} INFO - Uploading CSV file to stage bronze_rig_count_raw_STAGE...
+[2025-10-13T00:00:04.449+0000] {cursor.py:804} INFO - query: [CREATE STAGE IF NOT EXISTS bronze_rig_count_raw_STAGE]
+[2025-10-13T00:00:05.129+0000] {cursor.py:817} INFO - query execution done
+[2025-10-13T00:00:05.130+0000] {cursor.py:959} INFO - Number of results in first chunk: 1
+[2025-10-13T00:00:05.130+0000] {cursor.py:804} INFO - query: [PUT file:///tmp/rig_count_with_metadata.csv @bronze_rig_count_raw_STAGE OVERWRIT...]
+[2025-10-13T00:00:05.283+0000] {cursor.py:817} INFO - query execution done
+[2025-10-13T00:00:05.826+0000] {cursor.py:804} INFO - query: [LIST @bronze_rig_count_raw_STAGE]
+[2025-10-13T00:00:05.915+0000] {cursor.py:817} INFO - query execution done
+[2025-10-13T00:00:05.916+0000] {cursor.py:959} INFO - Number of results in first chunk: 1
+[2025-10-13T00:00:05.917+0000] {bronze_layer.py:186} INFO - Files in stage: [('bronze_rig_count_raw_stage/rig_count_with_metadata.csv.gz', 168288, '6dd7643321360f2fbb77b2888e6489d2', 'Mon, 13 Oct 2025 00:00:06 GMT')]
+[2025-10-13T00:00:05.917+0000] {bronze_layer.py:130} INFO - Creating table bronze_rig_count_raw if it doesn't exist...
+[2025-10-13T00:00:05.918+0000] {cursor.py:804} INFO - query: [CREATE TABLE IF NOT EXISTS bronze_rig_count_raw ( "Country" VARCHAR(500), "Count...]
+[2025-10-13T00:00:06.252+0000] {cursor.py:817} INFO - query execution done
+[2025-10-13T00:00:06.253+0000] {cursor.py:959} INFO - Number of results in first chunk: 1
+[2025-10-13T00:00:06.253+0000] {bronze_layer.py:158} INFO - Table bronze_rig_count_raw created or already exists
+[2025-10-13T00:00:06.253+0000] {bronze_layer.py:201} INFO - Copying data from stage to table bronze_rig_count_raw...
+[2025-10-13T00:00:06.254+0000] {cursor.py:804} INFO - query: [COPY INTO bronze_rig_count_raw FROM @bronze_rig_count_raw_STAGE FILE_FORMAT=( TY...]
+[2025-10-13T00:00:07.424+0000] {cursor.py:817} INFO - query execution done
+[2025-10-13T00:00:07.425+0000] {cursor.py:959} INFO - Number of results in first chunk: 1
+[2025-10-13T00:00:07.425+0000] {bronze_layer.py:220} INFO - COPY operation result: ('bronze_rig_count_raw_stage/rig_count_with_metadata.csv.gz', 'LOADED', 16503, 16503, 16503, 0, None, None, None, None)
+[2025-10-13T00:00:07.426+0000] {cursor.py:804} INFO - query: [SELECT COUNT(*) FROM bronze_rig_count_raw]
+[2025-10-13T00:00:07.758+0000] {cursor.py:817} INFO - query execution done
+[2025-10-13T00:00:07.759+0000] {cursor.py:959} INFO - Number of results in first chunk: 1
+[2025-10-13T00:00:07.760+0000] {bronze_layer.py:225} INFO - Total rows in bronze_rig_count_raw: 66012
+[2025-10-13T00:00:07.761+0000] {bronze_layer.py:227} INFO - Data loaded into bronze_rig_count_raw
+[2025-10-13T00:00:07.762+0000] {bronze_layer.py:267} INFO - ✅ Successfully stored rig count data in bronze_rig_count_raw
+[2025-10-13T00:00:07.762+0000] {bronze_layer.py:289} INFO - 🎉 Bronze layer ingestion completed successfully!
+[2025-10-13T00:00:07.763+0000] {bronze_layer.py:290} INFO - 📊 Data shape: (16503, 12)
+[2025-10-13T00:00:07.763+0000] {bronze_layer.py:291} INFO - 💾 Database: OILGAS_DB
+[2025-10-13T00:00:07.763+0000] {bronze_layer.py:292} INFO - 📋 Schema: raw
+[2025-10-13T00:00:07.763+0000] {bronze_layer.py:293} INFO - 📋 Table: bronze_rig_count_raw
+[2025-10-13T00:00:07.764+0000] {bronze_layer.py:294} INFO - 📋 Columns: ['Country', 'County', 'Basin', 'GOM', 'DrillFor', 'Location', 'State/Province', 'Trajectory', 'Year', 'Month', 'US_PublishDate', 'Rig Count Value']
+[2025-10-13T00:00:07.764+0000] {logging_mixin.py:151} INFO - 
+✅ Successfully ingested NAM Weekly rig count data!
+[2025-10-13T00:00:07.765+0000] {logging_mixin.py:151} INFO - 📊 Total rows loaded: 16503
+[2025-10-13T00:00:07.765+0000] {connection.py:640} INFO - closed
+[2025-10-13T00:00:07.805+0000] {connection.py:646} INFO - No async queries seem to be running, deleting session
+[2025-10-13T00:00:07.871+0000] {bronze_layer.py:306} INFO - Snowflake connection closed
+[2025-10-13T00:00:07.873+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-10-13T00:00:07.882+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=ETL_pipeline, task_id=bronze_rig_count_pipeline, execution_date=20251012T000000, start_date=20251013T000001, end_date=20251013T000007
+[2025-10-13T00:00:07.955+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-10-13T00:00:07.968+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
