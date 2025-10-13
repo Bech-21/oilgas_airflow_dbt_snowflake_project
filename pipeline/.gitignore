@@ -4,7 +4,7 @@
 /.github/.cache
 
 # Docker cache
-logs/
+docker/logs/
 docker/plugins/
 
 
@@ -17,4 +17,5 @@ __pycache__/
 .idea/
 .DS_Store
 docker-compose.override.yml
-logs/
+*.logs
+*log
