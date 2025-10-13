@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # Date configuration for past 90 days
-START_DATE = (date.today() - timedelta(90)).strftime("%Y-%m-%d")
+START_DATE = (date.today() - timedelta(100)).strftime("%Y-%m-%d")
 END_DATE = datetime.now().strftime("%Y-%m-%d")
 
 # Configuration - USA only with geographic bounds
