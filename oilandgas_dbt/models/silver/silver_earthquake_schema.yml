@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: silver_earthquake_with_location
+    description: 'Earthquake data enriched with geographic location information (state and county)'
+    config:
+      materialized: table
+      schema: silver
+    columns:
+      - name: id
+        description: 'Unique earthquake event identifier'
+        tests:
+          - unique
+          - not_null
+      
+      - name: longitude
+        description: 'Longitude coordinate'
+        tests:
+          - not_null
+      
+      - name: latitude
+        description: 'Latitude coordinate'
+        tests:
+          - not_null
+      
+      - name: elevation
+        description: 'Depth of earthquake in kilometers (originally depth)'
+      
+      - name: magnitude
+        description: 'Earthquake magnitude'
+        tests:
+          - not_null
+      
+      - name: magnitude_type
+        description: 'Type of magnitude measurement (e.g., ml, mb, mw)'
+      
+      - name: significance
+        description: 'Significance score of the earthquake event'
+      
+      - name: place
+        description: 'Text description of earthquake location'
+      - name: state_code
+        description: 'State'
+      
+      - name: event_time
+        description: 'Timestamp of earthquake event'
+        tests:
+          - not_null
+      
+      - name: event_year
+        description: 'Year of earthquake event'
+      
+      - name: event_month
+        description: 'Month of earthquake event'
+      
+      - name: event_week_num
+        description: 'Week number of earthquake event'
+      
+      - name: dbt_loaded_at
+        description: 'Timestamp when record was loaded by dbt'
+      
+      - name: dbt_batch_id
+        description: 'dbt invocation ID for tracking batch runs'
