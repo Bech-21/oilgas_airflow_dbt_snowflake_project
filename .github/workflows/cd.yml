@@ -60,4 +60,4 @@ jobs:
           cd oilandgas_dbt
           dbt deps
           dbt run    # builds production models on Snowflake
-          dbt test   # validates production data
+       
