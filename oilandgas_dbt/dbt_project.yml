@@ -37,6 +37,7 @@ models:
       +materialized: table
       +schema: gold
       +tags: ["gold", "analytics"]
+
       #   # Python model specific config
       # silver_earthquake_with_location:
       #   +materialized: table
