@@ -6,4 +6,3 @@ dbt-snowflake >=1.5.0
 snowflake-connector-python >=3.1.0
 apache-airflow-providers-snowflake
 reverse_geocoder 
-apache-airflow
