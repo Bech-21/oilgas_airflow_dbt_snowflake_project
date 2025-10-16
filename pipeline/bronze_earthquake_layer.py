@@ -4,7 +4,6 @@ import requests
 from pathlib import Path
 from datetime import datetime, timedelta, date
 import logging
-import json
 import os
 from dotenv import load_dotenv
 import reverse_geocoder as rg
@@ -336,16 +335,16 @@ def earthquake_bronze_etl():
         logger.info("🎉 Bronze layer ingestion completed successfully!")
         logger.info(f"📊 Data shape: {earthquake_data.shape}")
         logger.info(f"📈 Date range: {START_DATE} to {END_DATE}")
-        logger.info(f"🌎 Region: USA")
+        logger.info("🌎 Region: USA")
         logger.info(f"💾 Database: {SNOWFLAKE_DB}")
         logger.info(f"📋 Schema: {SNOWFLAKE_SCHEMA}")
         logger.info(f"📋 Table: {SNOWFLAKE_TABLE}")
         logger.info(f"📋 Columns: {list(earthquake_data.columns)}")
         
-        print(f"\n✅ Successfully ingested USGS earthquake data!")
+        print("\n✅ Successfully ingested USGS earthquake data!")
         print(f"📊 Total earthquakes loaded: {len(earthquake_data)}")
         print(f"📅 Date range: {START_DATE} to {END_DATE}")
-        print(f"🌎 Region: USA")
+        print("🌎 Region: USA")
         
     except Exception as e:
         logger.error(f"❌ Bronze layer ingestion failed: {e}")

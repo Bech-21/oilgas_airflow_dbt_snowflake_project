@@ -1,7 +1,5 @@
 import os
 import sys
-import csv
-import logging
 from datetime import datetime, timedelta
 
 

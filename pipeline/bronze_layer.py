@@ -293,7 +293,7 @@ def bronze_etl():
         logger.info(f"📋 Table: {SNOWFLAKE_TABLE}")
         logger.info(f"📋 Columns: {list(rig_count_data.columns)}")
         
-        print(f"\n✅ Successfully ingested NAM Weekly rig count data!")
+        print("\n✅ Successfully ingested NAM Weekly rig count data!")
         print(f"📊 Total rows loaded: {len(rig_count_data)}")
         
     except Exception as e:
