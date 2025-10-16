@@ -8,14 +8,10 @@ in a SQLite database as the "Bronze" layer of our data pipeline.
 The data includes weekly rig counts by location, type, and basin with historical comparisons.
 """
 
-import sqlite3
 import pandas as pd
 import requests
-from pathlib import Path
 from datetime import datetime
 import logging
-import sys
-import tempfile
 from io import BytesIO
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 # Configure logging
@@ -142,7 +138,7 @@ def bronze_etl():
         # logger.info("Bronze layer ingestion completed successfully!")
         
         # # Print summary
-        print(f"\n✅ Successfully ingested NAM Weekly rig count data!")
+        print("\n✅ Successfully ingested NAM Weekly rig count data!")
         
     except Exception as e:
         logger.error(f"Bronze layer ingestion failed: {e}")

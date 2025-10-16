@@ -17,7 +17,7 @@ from datetime import datetime
 
 def model(dbt, session):
     """
-    dbt Python model to enrich earthquake data with location information
+    dbt Python model to enrich earthquake data with location information + metadata.
     """
     # Configure model
     dbt.config(
@@ -28,7 +28,7 @@ def model(dbt, session):
     
     # Load the bronze data
     earth_bronze_df = dbt.ref('bronze_rig_earthquake').to_pandas()
-    county_earth_bronze_df = dbt.ref('bronze_county').to_pandas()
+    # county_earth_bronze_df = dbt.ref('bronze_county').to_pandas()
     
     # Filter for essential fields
     earth_bronze_df = earth_bronze_df[
