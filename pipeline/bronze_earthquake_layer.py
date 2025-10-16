@@ -7,7 +7,7 @@ import logging
 import json
 import os
 from dotenv import load_dotenv
-
+import reverse_geocoder as rg
 # Load environment variables
 load_dotenv()
 
@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # Date configuration for past 90 days
-START_DATE = (date.today() - timedelta(100)).strftime("%Y-%m-%d")
+START_DATE = (date.today() - timedelta(90)).strftime("%Y-%m-%d")
 END_DATE = datetime.now().strftime("%Y-%m-%d")
 
 # Configuration - USA only with geographic bounds
@@ -32,6 +32,23 @@ SNOWFLAKE_SCHEMA = os.getenv("SNOWFLAKE_SCHEMA")
 
 # Table configuration
 SNOWFLAKE_TABLE = "bronze_earthquake_raw"
+
+
+
+def get_country_code(lat, lon):
+    """
+    Retrieve the country code for a given latitude and longitude.
+    """
+    try:
+        coordinates = (float(lat), float(lon))
+        print("get_country_codegetting location data")
+        result = rg.search(coordinates)
+        if result and len(result) > 0:
+            return result[0]  # Returns dict with 'admin1', 'admin2', 'cc', etc.
+        return None
+    except Exception as e:
+        print(f"Error processing coordinates: {lat}, {lon} -> {str(e)}")
+        return None
 
 def get_earthquake_data(url: str) -> pd.DataFrame:
     """
@@ -82,6 +99,14 @@ def get_earthquake_data(url: str) -> pd.DataFrame:
             earthquakes.append(earthquake)
         
         df = pd.DataFrame(earthquakes)
+  
+        coords = list(zip(df['latitude'], df['longitude']))
+        results = rg.search(coords, mode=1)  # mode=1 = no multiprocessing, single-threaded
+        location_df = pd.DataFrame(results)
+        df['state'] = location_df['admin1']
+        df['county'] = location_df['admin2']
+        df['country_code'] = location_df['cc']
+            
         logger.info(f"Successfully loaded {len(df)} earthquake records")
         logger.info(f"Data shape: {df.shape}")
         
@@ -150,7 +175,7 @@ def create_table_if_not_exists(cur, table_name: str, df: pd.DataFrame):
         for col_name, col_type in df.dtypes.items():
             if col_name in ['ingestion_timestamp', 'time', 'updated']:
                 snowflake_type = 'TIMESTAMP_NTZ'
-            elif col_name in ['data_source', 'api_url', 'place', 'url', 'detail', 'alert', 'status', 'net', 'code', 'magType', 'type', 'title', 'region']:
+            elif col_name in ['data_source', 'api_url', 'place', 'url', 'detail', 'alert', 'status', 'net', 'code', 'magType', 'type', 'title', 'region', 'state', 'county', 'country_code']:
                 snowflake_type = 'VARCHAR(500)'
             elif col_name in ['data_period_start', 'data_period_end']:
                 snowflake_type = 'DATE'

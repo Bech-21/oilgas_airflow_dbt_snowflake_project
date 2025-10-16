@@ -1,12 +1,13 @@
+# GitHub Actions cache
+/.github/.cache
 
 # DBT cache
 oilandgas_dbt/.dbt/
 oilandgas_dbt/analyses/
 oilandgas_dbt/logs/
-oilandgas_dbt/macros/
-oilandgas_dbt/seeds/
 oilandgas_dbt/target/
 oilandgas_dbt/tests/
+oilandgas_dbt/dbt_packages/
 
 # Python-generated files
 __pycache__/

@@ -25,7 +25,7 @@ def postgres_to_s3():
 with DAG(
     dag_id="ETL_pipeline",
     default_args=default_args,
-    start_date=datetime(2025, 10,10 ),
+    start_date=datetime(2025, 10,13 ),
     schedule_interval='@daily'
 ) as dag:
     bronze_rig_count_pipeline = PythonOperator(
