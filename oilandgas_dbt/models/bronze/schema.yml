@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: oilgas_raw
-    description: "Raw oil and gas data from various sources 3rd party"
+    description: "Raw oil and gas data from various sources"
     database: "{{ var('source_database',) }}"
     schema: "{{ var('source_schema') }}"
     freshness:
