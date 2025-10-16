@@ -1,0 +1,181 @@
+version: 2
+
+sources:
+  - name: oilgas_raw
+    description: "Raw oil and gas data from various sources"
+    database: "{{ var('source_database',) }}"
+    schema: "{{ var('source_schema') }}"
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: BRONZE_RIG_COUNT_RAW
+        description: "Raw rig count data from Baker Hughes"
+        loaded_at_field: ingestion_timestamp
+        columns:
+          - name: Country
+            description: "Country where rig is located"
+          - name: County
+            description: "County where rig is located"
+          - name: Basin
+            description: "Geological basin"
+          - name: GOM
+            description: "Gulf of Mexico indicator"
+          - name: DrillFor
+            description: "What the rig is drilling for (Oil/Gas/Other)"
+          - name: Location
+            description: "Specific location details"
+          - name: "State/Province"
+            description: "State or province"
+          - name: Trajectory
+            description: "Drilling trajectory (Horizontal/Vertical/Directional)"
+          - name: Year
+            description: "Year of data"
+          - name: Month
+            description: "Month of data"
+          - name: US_PublishDate
+            description: "Publication date"
+          - name: "Rig Count Value"
+            description: "Number of active rigs"
+          - name: ingestion_timestamp
+            description: "When this data was ingested"
+            tests: [not_null]
+          - name: data_source
+            description: "Source of the data"
+            tests: [not_null]
+          - name: file_url
+            description: "URL where data was sourced from"
+            tests: [not_null]
+
+      - name: BRONZE_EARTHQUAKE_RAW
+        description: "Raw earthquake data from USGS for USA"
+        loaded_at_field: ingestion_timestamp
+        columns:
+          - name: id
+            description: "Unique earthquake identifier"
+            tests: [unique, not_null]
+          - name: magnitude
+            description: "Earthquake magnitude"
+            tests: [not_null]
+          - name: place
+            description: "Location description"
+          - name: time
+            description: "When the earthquake occurred"
+            tests: [not_null]
+          - name: updated
+            description: "When the data was last updated"
+          - name: tz
+            description: "Time zone"
+          - name: url
+            description: "USGS detail URL"
+          - name: detail
+            description: "Detailed information URL"
+          - name: felt
+            description: "Number of people who felt the earthquake"
+          - name: cdi
+            description: "Community Decimal Intensity"
+          - name: mmi
+            description: "Modified Mercalli Intensity"
+          - name: alert
+            description: "Alert level if any"
+          - name: status
+            description: "Data status"
+          - name: tsunami
+            description: "Tsunami warning indicator"
+          - name: sig
+            description: "Significance value"
+          - name: net
+            description: "Data contributor network"
+          - name: code
+            description: "Event code"
+          - name: ids
+            description: "Event identifiers"
+          - name: sources
+            description: "Data sources"
+          - name: types
+            description: "Product types"
+          - name: nst
+            description: "Number of seismic stations"
+          - name: dmin
+            description: "Minimum distance"
+          - name: rms
+            description: "Root mean square"
+          - name: gap
+            description: "Azimuthal gap"
+          - name: magType
+            description: "Magnitude type"
+          - name: type
+            description: "Event type"
+          - name: title
+            description: "Event title"
+          - name: longitude
+            description: "Longitude coordinate"
+            tests: [not_null]
+          - name: latitude
+            description: "Latitude coordinate"
+            tests: [not_null]
+          - name: depth
+            description: "Depth in kilometers"
+          - name: ingestion_timestamp
+            description: "When this data was ingested"
+            tests: [not_null]
+          - name: data_source
+            description: "Source of the data"
+            tests: [not_null]
+          - name: api_url
+            description: "API endpoint used"
+          - name: data_period_start
+            description: "Start date of data period"
+          - name: data_period_end
+            description: "End date of data period"
+          - name: region
+            description: "Geographic region (USA)"
+            tests: [not_null]
+
+      - name: US_COUNTIES_CENTROIDS
+        description: "US counties centroids geographic data"
+        loaded_at_field: INGESTION_TIMESTAMP
+        columns:
+          - name: X
+            description: "X coordinate (likely longitude)"
+          - name: Y
+            description: "Y coordinate (likely latitude)"
+          - name: OBJECTID_1
+            description: "Object identifier 1"
+          - name: NAME
+            description: "County name"
+            tests: [not_null]
+          - name: STATE
+            description: "State name"
+            tests: [not_null]
+          - name: STATE_FIPS_CD
+            description: "State FIPS code"
+          - name: COUNTY_FIPS_CD
+            description: "County FIPS code"
+          - name: FIPS_CD
+            description: "Combined FIPS code"
+          - name: POPULATION
+            description: "County population"
+          - name: POP_SQMI
+            description: "Population per square mile"
+          - name: SQMI
+            description: "Area in square miles"
+          - name: DHCS_CNTY_CD
+            description: "DHCS county code"
+          - name: OBJECTID
+            description: "Object identifier"
+          - name: LATITUDE
+            description: "Centroid latitude"
+            tests: [not_null]
+          - name: LONGITUDE
+            description: "Centroid longitude"
+            tests: [not_null]
+          - name: INGESTION_TIMESTAMP
+            description: "When this data was ingested"
+            tests: [not_null]
+          - name: DATA_SOURCE
+            description: "Source of the data"
+            tests: [not_null]
+          - name: FILE_PATH
+            description: "Source file path"
+            tests: [not_null]
