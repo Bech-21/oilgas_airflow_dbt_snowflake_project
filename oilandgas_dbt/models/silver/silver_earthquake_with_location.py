@@ -17,7 +17,7 @@ from datetime import datetime
 
 def model(dbt, session):
     """
-    dbt Python model to enrich earthquake data with location information
+    dbt Python model to enrich earthquake data with location information + metadata.
     """
     # Configure model
     dbt.config(
